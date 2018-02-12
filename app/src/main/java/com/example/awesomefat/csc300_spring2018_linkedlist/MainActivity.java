@@ -86,4 +86,32 @@ public class MainActivity extends AppCompatActivity
         catch(Exception e){}
 
     }
+
+    public void addAtIndexButtonClicked(int i)
+    {
+        try
+        {
+            int value = this.ll.addAtIndex(i);
+            //do stuff with that element
+            this.ll.display();
+        }
+        catch(Exception e)
+        {
+            System.err.println("Empty List");
+        }
+    }
+
+    public void removeAtIndexButtonClicked(int i)
+    {
+        try
+        {
+            int value = this.ll.removeAtIndex(i);
+            //do stuff with that element
+            this.ll.display();
+        }
+        catch(Exception e)
+        {
+            System.err.println("Empty List");
+        }
+    }
 }

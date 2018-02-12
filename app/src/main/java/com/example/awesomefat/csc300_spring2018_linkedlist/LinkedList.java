@@ -135,6 +135,84 @@ public class LinkedList
         }
     }
 
+    public void addAtIndex(int index, int payload)
+    {
+        Node node2Add = new Node(payload);
+        int index = index;
+        int count = 0;
+
+        Node n = this.head;
+
+        while(count != index)
+        {
+            n = n.getNextNode();
+            count++;
+        }
+
+        //find the node that points to nextNode
+        if(n == this.head)
+        {
+            //we have a one list
+            this.head = null;
+        }
+        else
+        {
+            Node prevNode = this.head;
+            while(prevNode.getNextNode() != node2Remove)
+            {
+                prevNode = prevNode.getNextNode();
+            }
+            //prevNode points to the node right before node2Remove
+            prevNode.setNextNode(null);
+
+        }
+        this.linkedListContainer.removeViewAt(this.linkedListContainer.getChildCount()-1);
+        return node2Add.getPayload();
+
+    }
+
+    public void removeAtIndex(int index)
+    {
+        if(this.head != null)
+        {
+            //traverse the list to find the node right before the last node
+            Node node2Remove = this.head;
+            int count = 0;
+
+            while(node2Remove.getNextNode() != null && count != index)
+            {
+                node2Remove = node2Remove.getNextNode();
+                count++;
+            }
+
+            //find the node that points to node2Remove
+            if(node2Remove == this.head)
+            {
+                //we have a one list
+                this.head = null;
+            }
+            else
+            {
+                Node prevNode = this.head;
+                while(prevNode.getNextNode() != node2Remove)
+                {
+                    prevNode = prevNode.getNextNode();
+                }
+                //prevNode points to the node right before node2Remove
+                prevNode.setNextNode(null);
+
+            }
+            this.linkedListContainer.removeViewAt(this.linkedListContainer.getChildCount()-1);
+            return node2Remove.getPayload();
+        }
+        else
+        {
+            //we have an empty list
+            Toast.makeText(this.theContext,"Empty List", Toast.LENGTH_SHORT).show();
+            throw new Exception("Empty List");
+        }
+    }
+
     public void display()
     {
         if(this.head == null)
@@ -143,7 +221,7 @@ public class LinkedList
         }
         else
         {
-            //do stuff here
+
             this.head.display();
             System.out.println("");
             /*
